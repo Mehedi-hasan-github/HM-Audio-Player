@@ -13,16 +13,28 @@
   </head>
   <body>
     <main class="player">
-      <div class="image-gallary"></div>
-      <audio id="audio"></audio>
+      <!--image gallary -->
+      <div class="image-gallary">
+        <img id="glrImage" src="./assets/468-thumbnail.png" alt="" />
+      </div>
+
+      <!-- Audio  -->
+      <audio id="audio">
+        <source src="/assets/a-long-way-166385.mp3" />
+      </audio>
       <!-- controls section -->
       <section>
         <div id="">
+          <!-- progress part -->
           <input type="range" name="" max="100" id="progress" />
+
+          <!-- control buttons -->
           <div class="controls">
             <button><i class="fa-solid fa-repeat"></i></button>
             <button><i class="fa-solid fa-angle-left"></i></button>
-            <button id="playPause"><i class="fa-solid fa-play"></i></button>
+            <button onclick="ctrlButton()">
+              <i id="playPause" class="fa-solid fa-play"></i>
+            </button>
             <button><i class="fa-solid fa-angle-right"></i></button>
             <button><i class="fa-solid fa-folder"></i></button>
           </div>
