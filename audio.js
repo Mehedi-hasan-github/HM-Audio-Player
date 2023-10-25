@@ -72,7 +72,15 @@ function handleNextBtn() {
 }
 
 // previous or left button for back music//
-function handlePreBtn() {}
+function handlePreBtn() {
+  currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+  console.log(currentSongIndex);
+  if (playPause.classList.contains("fa-play")) {
+    playPause.classList.remove("fa-play");
+    playPause.classList.add("fa-pause");
+  }
+  playMusic();
+}
 
 songs.forEach((song) => {
   // console.log(song);
