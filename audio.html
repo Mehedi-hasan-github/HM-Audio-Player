@@ -6,10 +6,7 @@
     <title>MH Audio-Player</title>
     <link rel="stylesheet" href="audio.css" />
     <!-- fontAwesome link -->
-    <script
-      src="https://kit.fontawesome.com/9d84e34e1f.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/9d84e34e1f.js"></script>
   </head>
   <body>
     <main class="player">
@@ -19,9 +16,7 @@
       </div>
 
       <!-- Audio  -->
-      <audio id="audio">
-        <source src="/assets/a-long-way-166385.mp3" />
-      </audio>
+      <audio id="audio"></audio>
       <!-- controls section -->
       <section>
         <div id="">
@@ -30,17 +25,24 @@
 
           <!-- control buttons -->
           <div class="controls">
-            <button><i class="fa-solid fa-repeat"></i></button>
-            <button><i class="fa-solid fa-angle-left"></i></button>
+            <button onclick="playingMood()">
+              <i class="fa-solid fa-repeat" id="moods"></i>
+            </button>
+            <button onclick="handlePreBtn">
+              <i class="fa-solid fa-angle-left" id="previousBtn"></i>
+            </button>
             <button onclick="ctrlButton()">
               <i id="playPause" class="fa-solid fa-play"></i>
             </button>
-            <button><i class="fa-solid fa-angle-right"></i></button>
-            <button><i class="fa-solid fa-folder"></i></button>
+            <button onclick="handleNextBtn()">
+              <i class="fa-solid fa-angle-right" id="nextBtn"></i>
+            </button>
+            <button><i class="fa-duotone fa-folder"></i></button>
           </div>
         </div>
       </section>
     </main>
     <script src="audio.js"></script>
+    <script src="playlist.js" type="modules"></script>
   </body>
 </html>
