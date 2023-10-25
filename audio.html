@@ -5,8 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MH Audio-Player</title>
     <link rel="stylesheet" href="audio.css" />
+    <!-- fontAwesome link -->
+    <script
+      src="https://kit.fontawesome.com/9d84e34e1f.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
+    <main class="player">
+      <div class="image-gallary"></div>
+      <audio id="audio"></audio>
+      <!-- controls section -->
+      <section>
+        <div id="">
+          <input type="range" name="" max="100" id="progress" />
+          <div class="controls">
+            <button><i class="fa-solid fa-repeat"></i></button>
+            <button><i class="fa-solid fa-angle-left"></i></button>
+            <button id="playPause"><i class="fa-solid fa-play"></i></button>
+            <button><i class="fa-solid fa-angle-right"></i></button>
+            <button><i class="fa-solid fa-folder"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
     <script src="audio.js"></script>
   </body>
 </html>
