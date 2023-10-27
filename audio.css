@@ -21,11 +21,13 @@ body {
 
 /* progress ber style */
 #progress {
+  appearance: none;
   -webkit-appearance: none;
   width: 100%;
   height: 5px;
   margin: 30px 0px;
   background-color: #fa2577;
+  cursor: pointer;
 }
 #progress::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -72,7 +74,7 @@ body {
 }
 
 .imageSpiner {
-  animation: spin 10s linear infinite;
+  animation: spin 20s linear infinite;
 }
 @keyframes spin {
   0% {

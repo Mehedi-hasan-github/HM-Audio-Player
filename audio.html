@@ -13,10 +13,11 @@
       <!--image gallary -->
       <div class="image-gallary">
         <img id="glrImage" src="./assets/468-thumbnail.png" alt="" />
+        <marquee style="font-size: 18px;margin-top: 15px; color: white;" behavior="" direction="" id="audioTitle"></marquee>
       </div>
 
       <!-- Audio  -->
-      <audio id="audio"></audio>
+      <audio id="audio" controls ></audio>
       <!-- controls section -->
       <section>
         <div id="">
@@ -32,17 +33,17 @@
               <i class="fa-solid fa-angle-left" id="previousBtn"></i>
             </button>
             <button onclick="ctrlButton()">
-              <i id="playPause" class="fa-solid fa-play"></i>
+              <i id="playPause" class="fa-solid fa-pause"></i>
             </button>
             <button onclick="handleNextBtn()">
               <i class="fa-solid fa-angle-right" id="nextBtn"></i>
             </button>
-            <button><i class="fa-duotone fa-folder"></i></button>
+            <button onclick="handleFiles()"><i class="fa-solid fa-folder" id="folderBtn"></i></button>
           </div>
         </div>
       </section>
     </main>
     <script src="audio.js"></script>
-    <script src="playlist.js" type="modules"></script>
+    <script src="playlist.js"></script>
   </body>
 </html>

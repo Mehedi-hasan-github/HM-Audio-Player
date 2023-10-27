@@ -17,44 +17,46 @@ const songs = [
   "assets\\whistle-vibes-172471.mp3",
 ];
 
-const audio = document.getElementById("audio");
-const progress = document.getElementById("progress");
-const playPause = document.getElementById("playPause");
-const imageGallary = document.getElementById("glrImage");
-const moods = document.getElementById("moods");
-const previous = document.getElementById("previousBtn");
-const next = document.getElementById("nextBtn");
-
-let currentSongIndex = 0;
-function playMusic() {
-  audio.src = songs[currentSongIndex];
-  audio.play();
+ 
+  const audio = document.getElementById("audio");
+  const progress = document.getElementById("progress");
+  const playPause = document.getElementById("playPause");
+  const imageGallary = document.getElementById("glrImage");
+  const moods = document.getElementById("moods");
+  const previous = document.getElementById("previousBtn");
+  const next = document.getElementById("nextBtn");
+  
+let currentSongIndex = 6;
+audio.src = songs[currentSongIndex];
+document.getElementById('audioTitle').innerText=songs[currentSongIndex]
+console.log(currentSongIndex);
+if(audio.pause()){
 }
 
 function ctrlButton() {
-  if (playPause.classList.contains("fa-play")) {
-    playPause.classList.remove("fa-play");
-    playPause.classList.add("fa-pause");
+  if (audio.paused) {
+    playPause.classList.remove('fa-play')
+    playPause.classList.add('fa-pause')
     imageGallary.classList.add("imageSpiner");
-    // audio.play();
-    playMusic();
-  } else {
-    playPause.classList.remove("fa-pause");
-    playPause.classList.add("fa-play");
+    audio.play()
+  } else if(audio.played) {
+    playPause.classList.remove('fa-pause')
+    playPause.classList.add('fa-play')
     imageGallary.classList.remove("imageSpiner");
     audio.pause();
+ }
   }
-}
-
-// playing mood functionality//
-function playingMood() {
-  if (moods.classList.contains("fa-repeat")) {
-    moods.classList.remove("fa-repeat");
-    moods.classList.add("fa-shuffle");
-  } else if (moods.classList.contains("fa-shuffle")) {
-    moods.classList.remove("fa-shuffle");
-    moods.classList.add("fa-rotate-right");
-  } else if (moods.classList.contains("fa-rotate-right")) {
+  
+  // playing mood functionality//
+  function playingMood() {
+    if (moods.classList.contains("fa-repeat")) {
+      moods.classList.remove("fa-repeat");
+      moods.classList.add("fa-shuffle");
+    } else if (moods.classList.contains("fa-shuffle")) {
+      audio.loop = true;
+      moods.classList.remove("fa-shuffle");
+      moods.classList.add("fa-rotate-right");
+    } else if (moods.classList.contains("fa-rotate-right")) {
     moods.classList.remove("fa-rotate-right");
     moods.classList.add("fa-repeat");
   }
@@ -62,26 +64,63 @@ function playingMood() {
 
 // lext or right button for change music//
 function handleNextBtn() {
-  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  songIndex = (currentSongIndex + 1) % songs.length;
+  audio.src = songs[currentSongIndex = songIndex];
+  document.getElementById('audioTitle').innerText=songs[currentSongIndex]
   console.log(currentSongIndex);
   if (playPause.classList.contains("fa-play")) {
     playPause.classList.remove("fa-play");
     playPause.classList.add("fa-pause");
+    audio.play();
   }
-  playMusic();
 }
 
 // previous or left button for back music//
 function handlePreBtn() {
-  currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-  console.log(currentSongIndex);
+  songIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+  audio.src = songs[currentSongIndex = songIndex];
+  document.getElementById('audioTitle').innerText=songs[currentSongIndex]
   if (playPause.classList.contains("fa-play")) {
     playPause.classList.remove("fa-play");
     playPause.classList.add("fa-pause");
   }
-  playMusic();
 }
 
-songs.forEach((song) => {
-  // console.log(song);
-});
+
+//  progress bar handling functionality//
+audio.onloadedmetadata = function () {
+  progress.max = audio.duration;
+  progress.value = audio.currentTime;
+  
+  if (audio.play()) {
+    setInterval(() => {
+      progress.value = audio.currentTime;
+    },400);
+  }
+};
+progress.onchange = function () {
+  audio.pause()
+  audio.currentTime = progress.value;
+  playPause.classList.add("fa-play");
+};
+
+
+///// for sequence mode music will auto start after ending previous song /////// 
+audio.onended = function () {
+  handleNextBtn()
+  document.getElementById('audioTitle').innerText=songs[currentSongIndex]
+}
+
+
+/// .....for the random moode song will play auto randomly.... ///
+// audio.onended = function () {
+//   const randomOrder = parseInt(Math.random() * songs.length)
+//   audio.src = songs[currentSongIndex=randomOrder];
+//   console.log(randomOrder);
+// }
+
+// ......for the single loop functionality..... //
+
+  if (moods.classList.contains('looping')) {
+    moods.setAttribute('mood','true')
+  }  
