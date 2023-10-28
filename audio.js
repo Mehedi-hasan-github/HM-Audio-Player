@@ -30,8 +30,9 @@ let currentSongIndex = 6;
 audio.src = songs[currentSongIndex];
 document.getElementById('audioTitle').innerText=songs[currentSongIndex]
 console.log(currentSongIndex);
-if(audio.pause()){
-}
+
+
+
 
 function ctrlButton() {
   if (audio.paused) {
@@ -50,6 +51,13 @@ function ctrlButton() {
   // playing mood functionality//
   function playingMood() {
     if (moods.classList.contains("fa-repeat")) {
+       /// .....for the random moode song will play auto randomly.... ///
+        audio.onended = function () {
+        const randomOrder = parseInt(Math.random() * songs.length)
+        audio.src = songs[currentSongIndex=randomOrder];
+        console.log(randomOrder);
+      }
+      audio.loop = false;
       moods.classList.remove("fa-repeat");
       moods.classList.add("fa-shuffle");
     } else if (moods.classList.contains("fa-shuffle")) {
@@ -57,8 +65,9 @@ function ctrlButton() {
       moods.classList.remove("fa-shuffle");
       moods.classList.add("fa-rotate-right");
     } else if (moods.classList.contains("fa-rotate-right")) {
-    moods.classList.remove("fa-rotate-right");
-    moods.classList.add("fa-repeat");
+      audio.loop = false;
+      moods.classList.remove("fa-rotate-right");
+      moods.classList.add("fa-repeat");
   }
 }
 
@@ -111,16 +120,8 @@ audio.onended = function () {
   document.getElementById('audioTitle').innerText=songs[currentSongIndex]
 }
 
-
-/// .....for the random moode song will play auto randomly.... ///
-// audio.onended = function () {
-//   const randomOrder = parseInt(Math.random() * songs.length)
-//   audio.src = songs[currentSongIndex=randomOrder];
-//   console.log(randomOrder);
-// }
-
 // ......for the single loop functionality..... //
 
-  if (moods.classList.contains('looping')) {
-    moods.setAttribute('mood','true')
-  }  
+  // if (moods.classList.contains('looping')) {
+  //  moods.setAttribute('mood','true')
+  // }  
